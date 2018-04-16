@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">AndroidGuideBot</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_maps">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="noPictures">Здесь будут фотографии посещенных вами мест</string>
+    <string name="isaacInf">Исаа́киевский собо́р (официальное название — собор преподо́бного Исаа́кия Далма́тского) — крупнейший православный храм Санкт-Петербурга. Расположен на Исаакиевской площади. Кафедральный собор Санкт-Петербургской епархии с 1858 по 1929 год. С 1928 года имеет статус музея (музейный комплекс «Государственный музей-памятник „Исаакиевский собор“»).</string>
+</resources>

@@ -1,0 +1,36 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#7D7D7D</item>
+        <item name="colorPrimaryDark">#7D7D7D</item>
+        <item name="colorAccent">#7D7D7D</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Blue" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#516FDD</item>
+        <item name="colorControlActivated">#516FDD</item>
+    </style>
+
+    <style name="Orange" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#FBA45E</item>
+        <item name="colorControlActivated">#FBA45E</item>
+    </style>
+
+    <style name="Grey" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#7D7D7D</item>
+        <item name="colorControlActivated">#7D7D7D</item>
+    </style>
+
+
+</resources>
