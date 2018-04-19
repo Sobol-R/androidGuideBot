@@ -12,6 +12,12 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/cont_main">
+        android:id="@+id/cont_main"
+        >
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.guide.androidguidebot.VisitedPlacesFragment"
+            />
     </FrameLayout>
 </android.support.constraint.ConstraintLayout>

@@ -7,18 +7,18 @@ import android.widget.TextView;
 
 import com.guide.androidguidebot.R;
 
-public class MovieViewHolder extends RecyclerView.ViewHolder {
+public class VisitedPlacesViewHolder extends RecyclerView.ViewHolder {
 
     View itemView;
     TextView titleTextView;
     ImageView titleImageView;
 
-    public MovieViewHolder(View itemView) {
+    public VisitedPlacesViewHolder(View itemView) {
         super(itemView);
 
         this.itemView = itemView;
 
-        titleTextView = itemView.findViewById(R.id.text);
+        titleTextView = itemView.findViewById(R.id.title);
         titleImageView = itemView.findViewById(R.id.image);
 
     }

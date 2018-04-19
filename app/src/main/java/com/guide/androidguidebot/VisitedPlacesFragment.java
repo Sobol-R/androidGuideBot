@@ -3,6 +3,9 @@ package com.guide.androidguidebot;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDialogFragment;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,27 +15,27 @@ import android.view.ViewGroup;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 
+import static com.guide.androidguidebot.R.id.recycler_view;
+
 public class VisitedPlacesFragment extends Fragment {
     public VisitedPlacesFragment() {
-        // Required empty public constructor
+        ///////////////////////////
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.gallery_without_pictures, container, false);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         Context context = getContext();
-        MovieAdapter adapter = new MovieAdapter(context);
 
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        PlacesAdapter adapter = new PlacesAdapter(context);
+
+        RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view);
+
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setLayoutManager(new GridLayoutManager(context, 1));
-        return inflater.inflate(R.layout.visited_places, container, false);
-
+        return inflater.inflate(R.layout.visited_places_layout, container, false);
     }
 }

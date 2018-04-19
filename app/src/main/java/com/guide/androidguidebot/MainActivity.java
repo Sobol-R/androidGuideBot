@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_gallery) {
             fragment = new GalleryFragment();
         } else if (id == R.id.nav_places) {
-            fragment = new VisitedPlaces();
+            fragment = new VisitedPlacesFragment();
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

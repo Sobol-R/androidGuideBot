@@ -1,4 +1,4 @@
-package com.sobol.user.recyclerview;
+package com.guide.androidguidebot;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,13 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestManager;
-import com.guide.androidguidebot.MovieViewHolder;
+import com.guide.androidguidebot.VisitedPlacesViewHolder;
 import com.guide.androidguidebot.R;
 
-import static java.lang.System.load;
-
-public class PlacesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
+public class PlacesAdapter extends RecyclerView.Adapter<VisitedPlacesViewHolder> {
 
     Context context;
     public PlacesAdapter(Context context) {
@@ -24,15 +21,15 @@ public class PlacesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
     @NonNull
     @Override
-    public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public VisitedPlacesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.image, parent, false);
-        MovieViewHolder vH = new MovieViewHolder(view);
+        View view = layoutInflater.inflate(R.layout.visited_places_layout, parent, false);
+        VisitedPlacesViewHolder vH = new VisitedPlacesViewHolder(view);
         return vH;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull VisitedPlacesViewHolder holder, int position) {
         holder.titleTextView.setText(PlacesDataBase.PLACES[position].title);
 
         Glide
@@ -49,7 +46,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
         });
     }
     private void startMovieAtivity(VisitedPlaces movie) {
-        Intent intent = new Intent(context, Main2Activity.class);
+        Intent intent = new Intent(context, PlaceDescription.class);
         intent.putExtra("MOVIE", movie);
         context.startActivity(intent);
     }
