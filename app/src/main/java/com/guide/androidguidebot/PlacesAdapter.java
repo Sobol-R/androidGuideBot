@@ -9,8 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
-import com.guide.androidguidebot.VisitedPlacesViewHolder;
-import com.guide.androidguidebot.R;
 
 public class PlacesAdapter extends RecyclerView.Adapter<VisitedPlacesViewHolder> {
 
@@ -23,7 +21,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<VisitedPlacesViewHolder>
     @Override
     public VisitedPlacesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.visited_places_layout, parent, false);
+        View view = layoutInflater.inflate(R.layout.visited_places_item_layout, parent, false);
         VisitedPlacesViewHolder vH = new VisitedPlacesViewHolder(view);
         return vH;
     }
