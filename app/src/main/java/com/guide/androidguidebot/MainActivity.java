@@ -1,14 +1,13 @@
 package com.guide.androidguidebot;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,9 +20,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageSwitcher;
 import android.widget.Toast;
-
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -48,26 +44,40 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //checkLocationPermission();
+        checkLocationPermission();
     }
 
-    /*
+
     public void checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+        final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 123;
+// Here, thisActivity is the current activity
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_CONTACTS)
                 != PackageManager.PERMISSION_GRANTED) {
-            Toast toast = Toast.makeText(getApplicationContext(),
-                    "Разрешите приложению использовать вашу геопозицию", Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.CENTER, 0, 0);
-            toast.show();
-            Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    finish();
-                }
-            }, 3500);
+
+            // Permission is not granted
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+                String explanation = "Для корректной работы необходимо разрешить приложению использовать вашу геолокацию";
+                Toast toast = Toast.makeText(this, explanation, Toast.LENGTH_LONG);
+                toast.show();
+            } else {
+
+                // No explanation needed; request the permission
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        } else {
+            // Permission has already been granted
         }
-    }*/
+
+    }
 
     public void onSwitcherClick(ImageSwitcher imageSwitcher){
         imageSwitcher.showNext();
@@ -86,7 +96,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        //getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -98,9 +108,6 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -114,9 +121,9 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_map) {
             fragment = new MapFragment();
         } else if (id == R.id.nav_gallery) {
-            fragment = new GalleryFragment();
+            fragment = new EmptyFragment();
         } else if (id == R.id.nav_places) {
-            fragment = new VisitedPlacesFragment();
+            fragment = new EmptyFragment();
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

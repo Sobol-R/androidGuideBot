@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 
-public class GalleryFragment extends Fragment {
-    public GalleryFragment() {
+public class EmptyFragment extends Fragment {
+    public EmptyFragment() {
         // Required empty public constructor
     }
 
