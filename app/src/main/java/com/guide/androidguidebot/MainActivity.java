@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageSwitcher;
 import android.widget.Toast;
 
@@ -121,7 +122,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_map) {
             fragment = new MapFragment();
         } else if (id == R.id.nav_gallery) {
-            fragment = new EmptyFragment();
+            fragment = new GalleryFragment();
         } else if (id == R.id.nav_places) {
             fragment = new EmptyFragment();
         } else if (id == R.id.nav_manage) {

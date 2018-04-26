@@ -7,15 +7,13 @@ import java.io.Serializable;
  */
 
 public class VisitedPlaces implements Serializable {
-    public VisitedPlaces(String title, String imgPath, float latitude, float longitude) {
+    public VisitedPlaces(String title, String imgPath, String description) {
         this.title = title;
         this.imgPath = imgPath;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.description = description;
     }
 
     String title;
     String imgPath;
-    float latitude;
-    float longitude;
+    String description;
 }

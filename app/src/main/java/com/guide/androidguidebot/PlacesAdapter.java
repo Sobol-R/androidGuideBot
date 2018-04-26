@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import static com.bumptech.glide.request.RequestOptions.centerCropTransform;
+import static com.bumptech.glide.request.RequestOptions.fitCenterTransform;
+
 import com.bumptech.glide.Glide;
 
 public class PlacesAdapter extends RecyclerView.Adapter<VisitedPlacesViewHolder> {
@@ -27,25 +30,27 @@ public class PlacesAdapter extends RecyclerView.Adapter<VisitedPlacesViewHolder>
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VisitedPlacesViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull VisitedPlacesViewHolder holder, final int position) {
         holder.titleTextView.setText(PlacesDataBase.PLACES[position].title);
 
         Glide
                 .with(this.context)
                 .load(PlacesDataBase.PLACES[position].imgPath)
+                .apply(fitCenterTransform())
+                .apply(centerCropTransform())
                 .into(holder.titleImageView);
 
         final VisitedPlaces visitedPlaces = PlacesDataBase.PLACES[position];
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startMovieAtivity(visitedPlaces);
+                startDescriptionAtivity(visitedPlaces, position);
             }
         });
     }
-    private void startMovieAtivity(VisitedPlaces movie) {
+    private void startDescriptionAtivity(VisitedPlaces visitedPlaces, int position) {
         Intent intent = new Intent(context, PlaceDescription.class);
-        intent.putExtra("MOVIE", movie);
+        intent.putExtra("position", position);
         context.startActivity(intent);
     }
 
