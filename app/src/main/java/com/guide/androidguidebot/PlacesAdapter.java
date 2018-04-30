@@ -31,16 +31,16 @@ public class PlacesAdapter extends RecyclerView.Adapter<VisitedPlacesViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull VisitedPlacesViewHolder holder, final int position) {
-        holder.titleTextView.setText(PlacesDataBase.PLACES[position].title);
+        holder.titleTextView.setText(PlacesDataBase.PLACES.get(position).title);
 
         Glide
                 .with(this.context)
-                .load(PlacesDataBase.PLACES[position].imgPath)
+                .load(PlacesDataBase.PLACES.get(position).imgPath)
                 .apply(fitCenterTransform())
                 .apply(centerCropTransform())
                 .into(holder.titleImageView);
 
-        final VisitedPlaces visitedPlaces = PlacesDataBase.PLACES[position];
+        final VisitedPlaces visitedPlaces = PlacesDataBase.PLACES.get(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,6 +56,6 @@ public class PlacesAdapter extends RecyclerView.Adapter<VisitedPlacesViewHolder>
 
     @Override
     public int getItemCount() {
-        return PlacesDataBase.PLACES.length;
+        return PlacesDataBase.PLACES.size();
     }
 }

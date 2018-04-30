@@ -36,7 +36,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryViewHolder> {
     public void onBindViewHolder(@NonNull GalleryViewHolder holder, int position) {
         Glide
                 .with(this.context)
-                .load(PlacesDataBase.PLACES[position].imgPath)
+                .load(PlacesDataBase.PLACES.get(position).imgPath)
                 .apply(fitCenterTransform())
                 .apply(centerCropTransform())
                 .into(holder.mImageView);
@@ -44,6 +44,6 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryViewHolder> {
 
     @Override
     public int getItemCount() {
-        return PlacesDataBase.PLACES.length;
+        return PlacesDataBase.PLACES.size();
     }
 }

@@ -1,6 +1,7 @@
 package com.guide.androidguidebot;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,9 @@ import android.widget.Toast;
 import com.google.android.gms.common.api.Api;
 import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -44,6 +49,7 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
    double longitude;
    double latitude;
    private FusedLocationProviderClient fusedLocationProviderClient;
+   Location curentLoation;
 
     @Override
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
@@ -84,6 +90,7 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
                 }
             }
         });
+        startLocationUpdates();
 
         googleMap.addMarker(new MarkerOptions()
                 .position(new LatLng(60.01847352, 30.37086098))
@@ -116,4 +123,30 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
             }
         });
     }
+
+    @SuppressLint("MissingPermission")
+    private void startLocationUpdates() {
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setInterval(2000);
+        locationRequest.setFastestInterval(1000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        LocationCallback locationCallback = new LocationCallback() {
+
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                if (locationResult == null) {
+                    return;
+                }
+                for (Location location : locationResult.getLocations()) {
+                    Log.v("GUB", "? " + location);
+                    curentLoation = location;
+                }
+            };
+        };
+
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest,
+                locationCallback, null /* Looper */);
+    }
+
 }

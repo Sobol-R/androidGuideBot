@@ -1,20 +1,64 @@
 package com.guide.androidguidebot;
 
+import android.app.DownloadManager;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by rosti on 18.04.2018.
- */
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 
     public class PlacesDataBase {
         public static final String DATA_URL = "https://maps.googleapis.com/maps/api/place/radarsearch/json?location=51.503186,-0.126446&radius=5000&type=museum&key=AIzaSyCZ2QPsrCzN8KrTE234GujTFlaRQQjQ5oI";
         public static List<VisitedPlaces> PLACES = new ArrayList<>();
+        public static List<TestPlaces> TEST_PLACES = new ArrayList<>();
+        public static List<String> PLACES_IDS = new ArrayList<>();
 
         public static void load() {
+            Request request = new Request.Builder()
+                    .url(DATA_URL)
+                    .build();
+            OkHttpClient client = new OkHttpClient();
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    String data = response.body().string();
+                    try {
+                        parse(data);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
 
         }
-         
+
+        public static void parse(String data) throws JSONException {
+            JSONObject object = new JSONObject(data);
+            JSONArray results = object.getJSONArray("results");
+            for (int i = 0; i < results.length(); ++i) {
+                JSONObject place = results.getJSONObject(i);
+                double latitude = place.getJSONObject("geometry").getJSONObject("location").getDouble("lat");
+                double longitude = place.getJSONObject("geometry").getJSONObject("location").getDouble("lng");
+                String placeId = place.getString("place_id");
+                TEST_PLACES.add(new TestPlaces(placeId, latitude, longitude));
+            }
+        }
+
 
 //        public static VisitedPlaces[] PLACES = {
 //                new VisitedPlaces("Памятник Николаю I", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/%D0%9F%D0%B0%D0%BC%D1%8F%D1%82%D0%BD%D0%B8%D0%BA_%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D1%8E_I._%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3._%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F.JPG/536px-%D0%9F%D0%B0%D0%BC%D1%8F%D1%82%D0%BD%D0%B8%D0%BA_%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D1%8E_I._%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3._%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F.JPG",

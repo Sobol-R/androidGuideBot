@@ -29,7 +29,7 @@ public class PlaceDescription extends AppCompatActivity {
 
         position = getIntent().getExtras().getInt("position");
 
-        VisitedPlaces visitedPlaces = PlacesDataBase.PLACES[position];
+        VisitedPlaces visitedPlaces = PlacesDataBase.PLACES.get(position);
 
         title.setText(visitedPlaces.title);
 
